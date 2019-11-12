@@ -4,7 +4,7 @@ import adverity.advertising.domain.AdvertisingData
 import adverity.advertising.infrastructure.CsvReader
 import spock.lang.Specification
 
-class ReadDataFromCsvTest extends Specification {
+class ReadDataFromCsvSpec extends Specification {
     final static file = File.createTempFile("test", ".tmp")
 
     def setupSpec() {
