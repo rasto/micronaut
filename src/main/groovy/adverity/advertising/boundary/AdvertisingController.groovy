@@ -11,17 +11,11 @@ import javax.inject.Inject
 @CompileStatic
 @Controller("/advertising")
 class AdvertisingController {
-    @Inject
     private AdvertisingService advertisingService;
 
-//    @Inject
-//    AdvertisingController(AdvertisingService advertisingService) {
-//        this.advertisingService = advertisingService
-//    }
-
-    @Get("/")
-    String index() {
-        "Hello World"
+    @Inject
+    AdvertisingController(AdvertisingService advertisingService) {
+        this.advertisingService = advertisingService
     }
 
     @Get("/campaigns")

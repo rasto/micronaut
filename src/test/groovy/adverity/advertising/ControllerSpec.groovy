@@ -19,15 +19,6 @@ class ControllerSpec extends Specification {
     @Inject
     AdvertisingService advertisingService
 
-    def "should get advertising data"() {
-        given:
-        HttpRequest request = HttpRequest.GET('/advertising')
-        when:
-        String response = client.toBlocking().retrieve(request)
-        then:
-        response == "Hello World"
-    }
-
     def "should get datasource"() {
         given:
         final datasource = "datasource"
