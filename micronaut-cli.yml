@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: adverity.advertising
+---
+testFramework: spock
+sourceLanguage: groovy
