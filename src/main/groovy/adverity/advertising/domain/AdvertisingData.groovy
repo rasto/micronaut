@@ -1,4 +1,4 @@
-package adverity.advertising
+package adverity.advertising.domain
 
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
