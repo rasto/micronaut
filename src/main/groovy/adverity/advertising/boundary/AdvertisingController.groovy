@@ -3,8 +3,10 @@ package adverity.advertising.boundary
 import adverity.advertising.domain.AdvertisingData
 import adverity.advertising.domain.AdvertisingService
 import groovy.transform.CompileStatic
+import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
+import io.micronaut.http.annotation.Post
 
 import javax.inject.Inject
 
@@ -28,8 +30,8 @@ class AdvertisingController {
         return advertisingService.datasources()
     }
 
-    @Get("/metrics/{datasource}/{campaign}")
-    List<AdvertisingData> metrics(String datasource, String campaign) {
-        return advertisingService.metrics(datasource, campaign)
+    @Post("/metrics")
+    List<AdvertisingData> metrics(@Body MetricsQuery metricsQuery) {
+        return advertisingService.metrics(metricsQuery.getDatasources(), metricsQuery.getCampaigns())
     }
 }

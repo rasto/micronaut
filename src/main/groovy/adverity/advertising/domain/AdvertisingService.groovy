@@ -9,17 +9,17 @@ import javax.inject.Singleton
 class AdvertisingService {
     private Collection<String> datasources = []
     private Collection<String> campaigns = []
-    private Map<Tuple2<String, String>, Collection<AdvertisingData>> allMetrics = [:]
+    private Map<String, Collection<AdvertisingData>> allMetrics = [:]
 
     void loadData(CsvReader csvReader) {
         final Set<String> datasources = []
         final Set<String> campaigns = []
-        Map<Tuple2<String, String>, Collection<AdvertisingData>> allMetrics = [:]
+        Map<String, Collection<AdvertisingData>> allMetrics = [:]
         csvReader.parse().forEach { advertisingData ->
             datasources.add(advertisingData.datasource)
             campaigns.add(advertisingData.campaign)
 
-            def key = new Tuple2(advertisingData.datasource, advertisingData.campaign)
+            def key = advertisingData.datasource
             def metrics = allMetrics.get(key, [])
             metrics.add(advertisingData)
             allMetrics.put(key, metrics)
@@ -29,21 +29,23 @@ class AdvertisingService {
 
     @Synchronized
     Set<String> datasources() {
-        return datasources;
+        return datasources
     }
 
     @Synchronized
     Set<String> campaigns() {
-        return campaigns;
+        return campaigns
     }
 
     @Synchronized
-    List<AdvertisingData> metrics(String datasource, String campaign) {
-        return allMetrics.get(new Tuple2(datasource, campaign), []);
+    List<AdvertisingData> metrics(List<String> datasources, List<String> campaigns) {
+        return datasources.collect { allMetrics.get(it) }
+                          .flatten()
+                          .findAll {campaigns.contains(it.campaign) }
     }
 
     @Synchronized
-    private void replace(Set<String> datasources, Set<String> campaigns, Map<Tuple2<String, String>, Collection<AdvertisingData>> allMetrics) {
+    private void replace(Set<String> datasources, Set<String> campaigns, Map<String, Collection<AdvertisingData>> allMetrics) {
         this.datasources = datasources
         this.campaigns = campaigns
         this.allMetrics = allMetrics

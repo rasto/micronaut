@@ -19,7 +19,7 @@ class ServiceSpec extends Specification {
         then:
         service.datasources() == ["Facebook Ads"] as Set
         service.campaigns() == ["Like Ads"] as Set
-        service.metrics("Facebook Ads", "Like Ads") == [advertisingData, anotherAdvertisingData]
+        service.metrics(["Facebook Ads"], ["Like Ads"]) == [advertisingData, anotherAdvertisingData]
     }
 
     def "should extract data for different campaign"() {
@@ -34,8 +34,8 @@ class ServiceSpec extends Specification {
         then:
         service.datasources() == ["Facebook Ads"] as Set
         service.campaigns() == ["Like Ads", "Another Like Ads"] as Set
-        service.metrics("Facebook Ads", "Like Ads") == [advertisingData]
-        service.metrics("Facebook Ads", "Another Like Ads") == [anotherAdvertisingData]
+        service.metrics(["Facebook Ads"], ["Like Ads"]) == [advertisingData]
+        service.metrics(["Facebook Ads"], ["Another Like Ads"]) == [anotherAdvertisingData]
     }
 
     def "should extract data for different datasource"() {
@@ -50,7 +50,7 @@ class ServiceSpec extends Specification {
         then:
         service.datasources() == ["Facebook Ads", "Another Facebook Ads"] as Set
         service.campaigns() == ["Like Ads"] as Set
-        service.metrics("Facebook Ads", "Like Ads") == [advertisingData]
-        service.metrics("Another Facebook Ads", "Like Ads") == [anotherAdvertisingData]
+        service.metrics(["Facebook Ads"], ["Like Ads"]) == [advertisingData]
+        service.metrics(["Another Facebook Ads"], ["Like Ads"]) == [anotherAdvertisingData]
     }
 }

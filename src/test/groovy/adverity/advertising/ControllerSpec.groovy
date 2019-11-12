@@ -1,5 +1,6 @@
 package adverity.advertising
 
+import adverity.advertising.boundary.MetricsQuery
 import adverity.advertising.domain.AdvertisingData
 import adverity.advertising.domain.AdvertisingService
 import io.micronaut.http.HttpRequest
@@ -46,8 +47,8 @@ class ControllerSpec extends Specification {
         final datasource = "datasource"
         final campaign = "campaign"
         final metric = new AdvertisingData(date: "date", datasource: "datasource", campaign: "campaign", clicks: 1, impressions: 2)
-        advertisingService.metrics(datasource, campaign) >> [metric]
-        HttpRequest request = HttpRequest.GET('/advertising/metrics/' + datasource + '/' + campaign)
+        advertisingService.metrics([datasource], [campaign]) >> [metric]
+        HttpRequest request = HttpRequest.POST('/advertising/metrics/', new MetricsQuery(datasources: [datasource], campaigns: [campaign]))
         when:
         def response = client.toBlocking().retrieve(request, List)
         then:
