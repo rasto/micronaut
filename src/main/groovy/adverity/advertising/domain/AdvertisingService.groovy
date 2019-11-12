@@ -39,9 +39,10 @@ class AdvertisingService {
 
     @Synchronized
     List<AdvertisingData> metrics(List<String> datasources, List<String> campaigns) {
+        final campaignsSet = campaigns as Set
         return datasources.collect { allMetrics.get(it) }
                           .flatten()
-                          .findAll {campaigns.contains(it.campaign) }
+                          .findAll {campaignsSet.contains(it.campaign) }
     }
 
     @Synchronized
