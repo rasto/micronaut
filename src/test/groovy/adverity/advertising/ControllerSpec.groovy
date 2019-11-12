@@ -28,17 +28,6 @@ class ControllerSpec extends Specification {
         response == "Hello World"
     }
 
-    def "should get campaigns"() {
-        given:
-        final campaign = "campaign"
-        advertisingService.campaigns() >> [campaign]
-        HttpRequest request = HttpRequest.GET('/advertising/campaigns')
-        when:
-        def response = client.toBlocking().retrieve(request, List)
-        then:
-        response == [campaign]
-    }
-
     def "should get datasource"() {
         given:
         final datasource = "datasource"
@@ -50,20 +39,31 @@ class ControllerSpec extends Specification {
         response == [datasource]
     }
 
-    def "should get date and metrics by campaign and datasource"() {
+    def "should get campaigns"() {
         given:
         final campaign = "campaign"
+        advertisingService.campaigns() >> [campaign]
+        HttpRequest request = HttpRequest.GET('/advertising/campaigns')
+        when:
+        def response = client.toBlocking().retrieve(request, List)
+        then:
+        response == [campaign]
+    }
+
+    def "should get date and metrics by datasource and campaign "() {
+        given:
         final datasource = "datasource"
-        final metric = new AdvertisingData(date: "date", campaign: "campaign", datasource: "datasource", clicks: 1, impressions: 2)
-        advertisingService.metrics(campaign, datasource) >> [metric]
-        HttpRequest request = HttpRequest.GET('/advertising/metrics/' + campaign + '/' + datasource)
+        final campaign = "campaign"
+        final metric = new AdvertisingData(date: "date", datasource: "datasource", campaign: "campaign", clicks: 1, impressions: 2)
+        advertisingService.metrics(datasource, campaign) >> [metric]
+        HttpRequest request = HttpRequest.GET('/advertising/metrics/' + datasource + '/' + campaign)
         when:
         def response = client.toBlocking().retrieve(request, List)
         then:
         response.size() == 1
         response.first().date == metric.date
-        response.first().campaign == metric.campaign
         response.first().datasource == metric.datasource
+        response.first().campaign == metric.campaign
         response.first().clicks == metric.clicks
         response.first().impressions == metric.impressions
     }

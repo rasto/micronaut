@@ -8,7 +8,7 @@ class ReadDataFromCsvSpec extends Specification {
     final static file = File.createTempFile("test", ".tmp")
 
     def setupSpec() {
-        final csv = "Date,Datasource,Campaign,Clicks,Impressions\n01.01.2019,Facebook Ads,Like Ads,274,1979\n01.01.2019,Facebook Ads,Offer Campaigns - Conversions,10245,764627"
+        final csv = "Date,Datasource,Campaign,Clicks,Impressions\n01.01.2019,Facebook Ads,Like Ads,274,1979\n01.01.2019,Facebook Ads,Offer Campaigns - Conversions,10245,"
         file.write(csv)
     }
 
@@ -42,6 +42,6 @@ class ReadDataFromCsvSpec extends Specification {
         then:
         advertisingData == [
                 new AdvertisingData(date: "01.01.2019", datasource: "Facebook Ads", campaign: "Like Ads", clicks: 274, impressions: 1979),
-                new AdvertisingData(date: "01.01.2019", datasource: "Facebook Ads", campaign: "Offer Campaigns - Conversions", clicks: 10245, impressions: 764627)]
+                new AdvertisingData(date: "01.01.2019", datasource: "Facebook Ads", campaign: "Offer Campaigns - Conversions", clicks: 10245, impressions: 0)]
     }
 }

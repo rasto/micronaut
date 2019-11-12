@@ -17,11 +17,11 @@ class CsvReader {
         return data;
     }
 
-    AdvertisingData convertLine(def entry) {
+    private AdvertisingData convertLine(def entry) {
         return new AdvertisingData(date: entry.Date,
                                    datasource: entry.Datasource,
                                    campaign: entry.Campaign,
-                                   clicks: entry.Clicks as int,
-                                   impressions: entry.Impressions as int)
+                                   clicks: (entry.Clicks ?: "0").toInteger(),
+                                   impressions: (entry.Impressions ?: "0").toInteger())
     }
 }

@@ -34,8 +34,8 @@ class AdvertisingController {
         return advertisingService.datasources()
     }
 
-    @Get("/metrics/{campaign}/{datasource}")
-    List<AdvertisingData> metrics(String campaign, String datasource) {
-        return advertisingService.metrics(campaign, datasource)
+    @Get("/metrics/{datasource}/{campaign}")
+    List<AdvertisingData> metrics(String datasource, String campaign) {
+        return advertisingService.metrics(datasource, campaign)
     }
 }
