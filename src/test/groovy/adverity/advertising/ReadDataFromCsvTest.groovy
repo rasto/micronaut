@@ -31,4 +31,15 @@ class ReadDataFromCsvTest extends Specification {
         then:
         !advertisingData.contains("Date,Datasource,Campaign,Clicks,Impressions")
     }
+
+    def "should parse data"() {
+        given:
+        final reader = new CsvReader(file)
+        when:
+        final advertisingData = reader.parse()
+        then:
+        advertisingData == [
+                new AdvertisingData(date: "01.01.2019", datasource: "Facebook Ads", campaign: "Like Ads", clicks: 274, impressions: 1979),
+                new AdvertisingData(date: "01.01.2019", datasource: "Facebook Ads", campaign: "Offer Campaigns - Conversions", clicks: 10245, impressions: 764627)]
+    }
 }

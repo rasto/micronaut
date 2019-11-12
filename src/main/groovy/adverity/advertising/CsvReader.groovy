@@ -1,5 +1,7 @@
 package adverity.advertising
 
+import static com.xlson.groovycsv.CsvParser.parseCsv
+
 class CsvReader {
     private final File file
 
@@ -7,10 +9,17 @@ class CsvReader {
         this.file = file
     }
 
-    def parse() {
-        def data = file.readLines()
-                       .drop(1)
-                       .collect { it }
+    Collection<AdvertisingData> parse() {
+        def data = []
+        parseCsv(new FileReader(file), separator: ',').forEachRemaining { data.add(convertLine(it)) }
         return data;
+    }
+
+    AdvertisingData convertLine(def entry) {
+        return new AdvertisingData(date: entry.Date,
+                                   datasource: entry.Datasource,
+                                   campaign: entry.Campaign,
+                                   clicks: entry.Clicks as int,
+                                   impressions: entry.Impressions as int)
     }
 }
