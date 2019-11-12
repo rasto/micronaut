@@ -22,7 +22,7 @@ class ControllerSpec extends Specification {
     def "should get datasource"() {
         given:
         final datasource = "datasource"
-        advertisingService.datasources() >> [datasource]
+        advertisingService.datasources() >> ([datasource] as Set)
         HttpRequest request = HttpRequest.GET('/advertising/datasources')
         when:
         def response = client.toBlocking().retrieve(request, List)
@@ -33,7 +33,7 @@ class ControllerSpec extends Specification {
     def "should get campaigns"() {
         given:
         final campaign = "campaign"
-        advertisingService.campaigns() >> [campaign]
+        advertisingService.campaigns() >> ([campaign] as Set)
         HttpRequest request = HttpRequest.GET('/advertising/campaigns')
         when:
         def response = client.toBlocking().retrieve(request, List)

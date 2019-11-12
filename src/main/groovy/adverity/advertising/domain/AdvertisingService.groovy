@@ -12,8 +12,8 @@ class AdvertisingService {
     private Map<Tuple2<String, String>, Collection<AdvertisingData>> allMetrics = [:]
 
     void loadData(CsvReader csvReader) {
-        final datasources = []
-        final campaigns = []
+        final Set<String> datasources = []
+        final Set<String> campaigns = []
         Map<Tuple2<String, String>, Collection<AdvertisingData>> allMetrics = [:]
         csvReader.parse().forEach { advertisingData ->
             datasources.add(advertisingData.datasource)
@@ -28,22 +28,22 @@ class AdvertisingService {
     }
 
     @Synchronized
-    List<String> datasources() {
+    Set<String> datasources() {
         return datasources;
     }
 
     @Synchronized
-    List<String> campaigns() {
+    Set<String> campaigns() {
         return campaigns;
     }
 
     @Synchronized
     List<AdvertisingData> metrics(String datasource, String campaign) {
-        return allMetrics.get(new Tuple2(datasource, campaign));
+        return allMetrics.get(new Tuple2(datasource, campaign), []);
     }
 
     @Synchronized
-    private void replace(List<String> datasources, List<String> campaigns, Map<Tuple2<String, String>, Collection<AdvertisingData>> allMetrics) {
+    private void replace(Set<String> datasources, Set<String> campaigns, Map<Tuple2<String, String>, Collection<AdvertisingData>> allMetrics) {
         this.datasources = datasources
         this.campaigns = campaigns
         this.allMetrics = allMetrics

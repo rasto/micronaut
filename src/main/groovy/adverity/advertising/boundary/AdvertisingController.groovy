@@ -19,12 +19,12 @@ class AdvertisingController {
     }
 
     @Get("/campaigns")
-    List<String> compaigns() {
+    Set<String> compaigns() {
         return advertisingService.campaigns()
     }
 
     @Get("/datasources")
-    List<String> datasources() {
+    Set<String> datasources() {
         return advertisingService.datasources()
     }
 
