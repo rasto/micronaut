@@ -1,7 +1,5 @@
 package adverity.advertising
 
-import java.nio.file.Files
-
 class CsvReader {
     private final File file
 
@@ -10,7 +8,9 @@ class CsvReader {
     }
 
     def parse() {
-        def data = file.readLines().collect { it }
+        def data = file.readLines()
+                       .drop(1)
+                       .collect { it }
         return data;
     }
 }
