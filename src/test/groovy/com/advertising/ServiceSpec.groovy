@@ -1,8 +1,8 @@
-package adverity.advertising
+package com.advertising
 
-import adverity.advertising.domain.AdvertisingData
-import adverity.advertising.domain.AdvertisingService
-import adverity.advertising.infrastructure.CsvReader
+import com.advertising.domain.AdvertisingData
+import com.advertising.infrastructure.CsvReader
+import com.advertising.domain.AdvertisingService
 import spock.lang.Specification
 
 class ServiceSpec extends Specification {

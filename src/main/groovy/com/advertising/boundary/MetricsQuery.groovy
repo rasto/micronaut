@@ -1,4 +1,4 @@
-package adverity.advertising.boundary
+package com.advertising.boundary
 
 import groovy.transform.TupleConstructor
 

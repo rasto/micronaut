@@ -1,7 +1,8 @@
-package adverity.advertising.boundary
+package com.advertising.boundary
 
-import adverity.advertising.domain.AdvertisingData
-import adverity.advertising.domain.AdvertisingService
+
+import com.advertising.domain.AdvertisingData
+import com.advertising.domain.AdvertisingService
 import groovy.transform.CompileStatic
 import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Controller

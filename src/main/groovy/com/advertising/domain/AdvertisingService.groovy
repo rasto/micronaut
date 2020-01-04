@@ -1,6 +1,6 @@
-package adverity.advertising.domain
+package com.advertising.domain
 
-import adverity.advertising.infrastructure.CsvReader
+import com.advertising.infrastructure.CsvReader
 import groovy.transform.Synchronized
 
 import javax.inject.Singleton

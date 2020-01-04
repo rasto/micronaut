@@ -1,6 +1,7 @@
-package adverity.advertising.infrastructure
+package com.advertising.infrastructure
 
-import adverity.advertising.domain.AdvertisingData
+
+import com.advertising.domain.AdvertisingData
 
 import static com.xlson.groovycsv.CsvParser.parseCsv
 

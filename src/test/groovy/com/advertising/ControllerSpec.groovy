@@ -1,8 +1,9 @@
-package adverity.advertising
+package com.advertising
 
-import adverity.advertising.boundary.MetricsQuery
-import adverity.advertising.domain.AdvertisingData
-import adverity.advertising.domain.AdvertisingService
+
+import com.advertising.boundary.MetricsQuery
+import com.advertising.domain.AdvertisingData
+import com.advertising.domain.AdvertisingService
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.client.RxHttpClient
 import io.micronaut.http.client.annotation.Client

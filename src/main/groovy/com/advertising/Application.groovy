@@ -1,10 +1,10 @@
-package adverity.advertising
+package com.advertising
 
-import adverity.advertising.domain.AdvertisingService
-import adverity.advertising.infrastructure.CsvReader
+
+import com.advertising.domain.AdvertisingService
+import com.advertising.infrastructure.CsvReader
 import io.micronaut.runtime.Micronaut
 import groovy.transform.CompileStatic
-import io.micronaut.runtime.event.annotation.EventListener
 import io.micronaut.runtime.server.event.ServerStartupEvent
 
 import javax.inject.Inject
