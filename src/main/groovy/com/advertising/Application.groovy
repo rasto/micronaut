@@ -6,7 +6,7 @@ import com.advertising.infrastructure.CsvReader
 import io.micronaut.runtime.Micronaut
 import groovy.transform.CompileStatic
 import io.micronaut.runtime.server.event.ServerStartupEvent
-
+import io.micronaut.runtime.event.annotation.EventListener
 import javax.inject.Inject
 
 @CompileStatic
