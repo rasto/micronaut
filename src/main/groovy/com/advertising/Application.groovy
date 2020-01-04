@@ -12,7 +12,7 @@ import javax.inject.Inject
 @CompileStatic
 class Application {
     @Inject
-    AdvertisingService advertisingService;
+    AdvertisingService advertisingService
 
     @EventListener
     void onStartup(ServerStartupEvent event) {

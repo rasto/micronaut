@@ -14,7 +14,7 @@ class ReadDataFromCsvSpec extends Specification {
     }
 
     def cleanupSpec() {
-        file.delete();
+        file.delete()
     }
 
     def "should read from CSV"() {

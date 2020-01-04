@@ -14,7 +14,7 @@ import javax.inject.Inject
 @CompileStatic
 @Controller("/advertising")
 class AdvertisingController {
-    private AdvertisingService advertisingService;
+    private AdvertisingService advertisingService
 
     @Inject
     AdvertisingController(AdvertisingService advertisingService) {

@@ -15,7 +15,7 @@ class CsvReader {
     Collection<AdvertisingData> parse() {
         def data = []
         parseCsv(new FileReader(file), separator: ',').forEachRemaining { data.add(convertLine(it)) }
-        return data;
+        data
     }
 
     private AdvertisingData convertLine(def entry) {
